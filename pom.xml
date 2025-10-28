@@ -63,9 +63,9 @@
             <configuration>
               <artifactItems>
                 <artifactItem>
-                  <groupId>com.github.jsimone</groupId>
+                  <groupId>webapp-runner</groupId>
                   <artifactId>webapp-runner</artifactId>
-                  <version>10.1.15</version>
+                  <version>9.0.71.0</version>
                   <destFileName>webapp-runner.jar</destFileName>
                 </artifactItem>
               </artifactItems>
