@@ -4,14 +4,20 @@ COPY pom.xml .
 COPY src ./src
 RUN mvn clean package -DskipTests
 
-FROM eclipse-temurin:17-jre-alpine
+FROM tomcat:10.1-jre17
 WORKDIR /app
 
-# Download webapp-runner from Maven Central
-RUN wget -O webapp-runner.jar https://repo1.maven.org/maven2/com/github/jsimone/webapp-runner/9.0.70.0/webapp-runner-9.0.70.0.jar
+# Copy the WAR file
+COPY --from=build /app/target/prometheus-web-1.0.0.war /usr/local/tomcat/webapps/ROOT.war
 
-COPY --from=build /app/target/prometheus-web-1.0.0.war ./ROOT.war
+# Set environment variables
+ENV PORT=8080
+
+# Create startup script
+RUN echo '#!/bin/sh' > /start.sh && \
+    echo 'export CATALINA_OPTS="-Dserver.port=$PORT"' >> /start.sh && \
+    echo 'exec catalina.sh run' >> /start.sh && \
+    chmod +x /start.sh
 
 EXPOSE 8080
-ENV PORT=8080
-CMD ["sh", "-c", "java -jar webapp-runner.jar --port $PORT ./ROOT.war"]
+CMD ["/start.sh"]
