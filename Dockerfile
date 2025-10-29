@@ -7,8 +7,8 @@ RUN mvn clean package -DskipTests
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 
-# Download webapp-runner
-RUN wget -O webapp-runner.jar https://github.com/jsimone/webapp-runner/releases/download/9.0.71.0/webapp-runner-9.0.71.0.jar
+# Download webapp-runner from Maven Central
+RUN wget -O webapp-runner.jar https://repo1.maven.org/maven2/com/github/jsimone/webapp-runner/9.0.70.0/webapp-runner-9.0.70.0.jar
 
 COPY --from=build /app/target/prometheus-web-1.0.0.war ./ROOT.war
 
