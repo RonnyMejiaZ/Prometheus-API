@@ -2,13 +2,11 @@
 
 ## 🚀 Quick Deploy
 
-**Deploy in 5 minutes**: See [QUICK_START.md](./QUICK_START.md)
+**Run locally**: See [LOCAL_SETUP.md](./LOCAL_SETUP.md)
 
 Supported platforms:
-- 🌐 Railway (recommended)
-- ☁️ Heroku (free tier)
-- 🐳 Docker (any host)
-- 💻 Local Tomcat
+- 💻 Local Tomcat (free)
+- 🌐 Local + ngrok (free with public URL)
 
 ## 📋 Requisitos Locales: JDK 17, Maven 3.8+, Tomcat 10.1
 

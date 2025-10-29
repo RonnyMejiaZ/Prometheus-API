@@ -5,9 +5,7 @@
 | Platform | Cost | Sleep? | Best For |
 |----------|------|--------|----------|
 | **Local + ngrok** | 100% FREE | Never | School projects, demos |
-| **Heroku** | FREE | Yes (30 min) | Portfolio, demos |
-| **Railway** | 500hrs free/month | No | Production-like |
-| **Render** | $7/month after trial | No | Not free |
+| **Local Tomcat** | 100% FREE | Never | Development, testing |
 
 ---
 
@@ -34,40 +32,26 @@ ngrok http 8080
 
 ---
 
-## 🥈 **Runner-up: Heroku Free Tier**
+## 🥈 **Runner-up: Local Tomcat**
 
 ### Why This is Good:
-- ✅ **FREE** (no credit card)
-- ✅ **Public URL** (always available)
-- ⚠️ **Sleeps after 30 minutes** inactivity
-- ⚠️ **First wake** takes 10-30 seconds
+- ✅ **100% FREE** forever
+- ✅ **No limitations**
+- ✅ **Full control**
+- ⚠️ **Only local access** (unless you use ngrok)
 
-### Setup (5 minutes):
+### Setup (3 minutes):
 ```bash
-heroku create your-app
-git push heroku main
-heroku open
+mvn clean package
+# Copy target/prometheus-web-1.0.0.war to TOMCAT/webapps/
+# Start Tomcat
+# Visit http://localhost:8080/prometheus-web-1.0.0/
 ```
 
-📖 **Full guide:** See [HEROKU_DEPLOY.md](./HEROKU_DEPLOY.md)
+📖 **Full guide:** See [LOCAL_SETUP.md](./LOCAL_SETUP.md)
 
 ---
 
-## 🥉 **Third Place: Railway Free Tier**
-
-### Why This is OK:
-- ✅ **500 hours/month FREE**
-- ✅ **No sleep**
-- ❌ **Not truly FREE** - requires payment after 500 hours
-- ❌ **Need credit card for production use**
-
-### Setup (5 minutes):
-```bash
-# Deploy from GitHub
-# See RAILWAY_DEPLOY.md
-```
-
-📖 **Full guide:** See [RAILWAY_DEPLOY.md](./RAILWAY_DEPLOY.md)
 
 ---
 
@@ -81,25 +65,25 @@ heroku open
 - Works great for presentations
 
 ### For Portfolio / Resume:
-**Use: Heroku**
+**Use: Local + ngrok**
 - Free public URL
 - Looks professional
 - Shows deployment skills
-- Just note it sleeps after inactivity
+- No limitations
 
 ### For Production Apps:
 **None are truly free long-term** - consider:
-- **Render**: $7/month (most affordable)
 - **DigitalOcean**: $6/month
 - **AWS/Azure**: Pay as you go (can be cheap for small apps)
+- **VPS**: $3-5/month
 
 ---
 
 ## 🎯 **Bottom Line**
 
 1. **Need it FREE forever?** → Use Local + ngrok
-2. **Need a public URL?** → Use Heroku (free but sleeps)
-3. **Budget for hosting?** → Use Railway or Render
+2. **Need a public URL?** → Use Local + ngrok
+3. **Budget for hosting?** → Use DigitalOcean/AWS/VPS
 
 ---
 
@@ -107,10 +91,8 @@ heroku open
 
 ```
 Need a public URL?
-├─ YES → Want it to never sleep?
-│   ├─ YES → Use Local + ngrok (FREE)
-│   └─ NO → Use Heroku (FREE, sleeps after 30min)
-└─ NO → Just run locally (java -jar ...)
+├─ YES → Use Local + ngrok (FREE)
+└─ NO → Just run locally (Tomcat)
 ```
 
 ---
