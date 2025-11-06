@@ -110,7 +110,7 @@
         }
 
         .error {
-          color: #b91c1c;
+          color: #c94848;
           margin-bottom: 8px;
         }
 
