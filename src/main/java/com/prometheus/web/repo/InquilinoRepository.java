@@ -37,6 +37,7 @@ public class InquilinoRepository {
         String term = q.toLowerCase(Locale.ROOT).trim();
         return DATA.values().stream()
                 .filter(p -> contains(p.getNombre(), term) ||
+                        contains (p.getEmail(), term) ||
                         contains(p.getDocumento(), term) ||
                         contains(p.getTelefono(), term))
                 .collect(Collectors.toList());

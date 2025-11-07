@@ -10,9 +10,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet("/api/propiedades")
+@WebServlet("/api/propiedades/*")
 public class PropertyApiServlet extends HttpServlet {
 
     @Override
@@ -20,7 +19,25 @@ public class PropertyApiServlet extends HttpServlet {
             throws ServletException, IOException {
         
         try {
-            // Obtener parámetros de paginación
+            // Si hay pathInfo, es para obtener una propiedad específica
+            String pathInfo = req.getPathInfo();
+            if (pathInfo != null && !pathInfo.equals("/")) {
+                long id = Long.parseLong(pathInfo.substring(1));
+                Property property = PropertyRepository.findById(id);
+                
+                if (property == null) {
+                    var response = ApiResponse.error("Propiedad no encontrada");
+                    resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                    JsonUtils.writeJsonResponse(resp, response);
+                    return;
+                }
+                
+                var response = ApiResponse.success(property);
+                JsonUtils.writeJsonResponse(resp, response);
+                return;
+            }
+            
+            // Si no hay pathInfo, listar todas con paginación
             var p = Pagination.readParams(req);
             var pr = PropertyRepository.searchPage(p.q, p.page, p.size);
             
@@ -28,6 +45,10 @@ public class PropertyApiServlet extends HttpServlet {
             var response = ApiResponse.success(pr);
             JsonUtils.writeJsonResponse(resp, response);
             
+        } catch (NumberFormatException e) {
+            var response = ApiResponse.error("ID inválido");
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            JsonUtils.writeJsonResponse(resp, response);
         } catch (Exception e) {
             var response = ApiResponse.error("Error al obtener propiedades: " + e.getMessage());
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
@@ -167,13 +188,4 @@ public class PropertyApiServlet extends HttpServlet {
         }
     }
 
-    @Override
-    protected void doOptions(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        // Manejar preflight requests para CORS
-        resp.setHeader("Access-Control-Allow-Origin", "*");
-        resp.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-        resp.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-        resp.setStatus(HttpServletResponse.SC_OK);
-    }
 }

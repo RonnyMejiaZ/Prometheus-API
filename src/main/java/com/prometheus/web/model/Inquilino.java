@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 public class Inquilino {
     private long id;
     private String nombre;
+    private String email;
     private String documento;
     private String telefono;
     private LocalDateTime createdAt;
@@ -14,6 +15,7 @@ public class Inquilino {
     public Inquilino(long id, String nombre, String documento, String telefono, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.nombre = nombre;
+        this.email = email;
         this.documento = documento;
         this.telefono = telefono;
         this.createdAt = createdAt;
@@ -23,6 +25,8 @@ public class Inquilino {
     public void setId(long id) { this.id = id; }
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
     public String getDocumento() { return documento; }
     public void setDocumento(String documento) { this.documento = documento; }
     public String getTelefono() { return telefono; }
