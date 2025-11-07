@@ -12,7 +12,7 @@ public class Inquilino {
     private LocalDateTime updatedAt;
 
     public Inquilino() {}
-    public Inquilino(long id, String nombre, String documento, String telefono, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Inquilino(long id, String nombre, String email, String documento, String telefono, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;

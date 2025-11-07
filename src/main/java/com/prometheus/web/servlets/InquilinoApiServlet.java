@@ -1,13 +1,9 @@
 package com.prometheus.web.servlets;
-
 import com.prometheus.web.model.Inquilino;
-import com.prometheus.web.model.Property;
 import com.prometheus.web.repo.InquilinoRepository;
-import com.prometheus.web.repo.PropertyRepository;
 import com.prometheus.web.shared.ApiResponse;
 import com.prometheus.web.util.JsonUtils;
 import com.prometheus.web.util.Pagination;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
