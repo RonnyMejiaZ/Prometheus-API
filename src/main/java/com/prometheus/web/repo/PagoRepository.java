@@ -1,7 +1,6 @@
 package com.prometheus.web.repo;
 
 import com.prometheus.web.model.Pago;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
@@ -16,12 +15,9 @@ public class PagoRepository {
     }
 
     public static synchronized Pago save(Pago p) {
-        LocalDateTime now = LocalDateTime.now();
         if (p.getId() == 0) {
             p.setId(SEQ.getAndIncrement());
-            p.setCreatedAt(now);
         }
-        p.setUpdatedAt(now);
         DATA.put(p.getId(), p);
         return p;
     }
@@ -36,7 +32,14 @@ public class PagoRepository {
             return findAll();
         String term = q.toLowerCase(Locale.ROOT).trim();
         return DATA.values().stream()
-                .filter(p -> contains(String.valueOf(p.getId()), term))
+                .filter(p -> contains(String.valueOf(p.getId()), term) ||
+                        contains(String.valueOf(p.getAlquilerId()), term) ||
+                        contains(p.getFechaPago().toString(), term) ||
+                        contains(p.getMontoMensual().toString(), term) ||
+                        contains(p.isPagoRenta() ? "true" : "false", term) ||
+                        contains(p.isPagoAgua() ? "true" : "false", term) ||
+                        contains(p.isPagoEnergia() ? "true" : "false", term) ||
+                        contains(p.isPagoGas() ? "true" : "false", term))
                 .collect(Collectors.toList());
     }
 
@@ -54,7 +57,6 @@ public class PagoRepository {
     }
 
     public static synchronized Pago update(Pago p) {
-        p.setUpdatedAt(LocalDateTime.now());
         DATA.put(p.getId(), p);
         return p;
     }

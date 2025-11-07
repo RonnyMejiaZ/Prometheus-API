@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 public class Alquiler {
     private long id;
+    private String nombre;                   // nombre del alquiler
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     private int meses;                       // cantidad de meses
@@ -19,6 +20,7 @@ public class Alquiler {
     private LocalDateTime updatedAt;
     public Alquiler() {}
     public Alquiler(long id,
+                    String nombre,
                     LocalDate fechaInicio,
                     LocalDate fechaFin,
                     int meses,
@@ -31,6 +33,7 @@ public class Alquiler {
                     LocalDateTime createdAt,
                     LocalDateTime updatedAt) {
         this.id = id;
+        this.nombre = nombre;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.meses = meses;
@@ -45,6 +48,9 @@ public class Alquiler {
     }
     public long getId() { return id; }
     public void setId(long id) { this.id = id; }
+
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
 
     public LocalDate getFechaInicio() { return fechaInicio; }
     public void setFechaInicio(LocalDate fechaInicio) { this.fechaInicio = fechaInicio; }
