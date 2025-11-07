@@ -21,3 +21,8 @@ Thumbs.db
 # Legacy UI/Servlet backups
 src/main/java/com/prometheus/web/servlets/old.servlets/
 src/main/webapp/old.webapp/
+# Docs
+*.md
+!README.md
+README/
+.cursor/
