@@ -14,13 +14,13 @@ This project exposes a RESTful API for managing rental operations (properties, t
 mvn clean package
 mvn tomcat7:run
 ```
-Then access the API at `http://localhost:8080/api/...` (for example `http://localhost:8080/api/propiedades`).
+Then access the API at `http://localhost:8080/prometheus_web_war_exploded/api/...` (for example `http://localhost:8080/prometheus_web_war_exploded/api/propiedades`).
 
 ## Next Steps
 Pair this backend with the React client or any other frontend that calls the API endpoints using `fetch` or a similar HTTP client.
 
 ## API Endpoints
-Base URL when running locally: `http://localhost:8080`
+Base URL when running locally: `http://localhost:8080/prometheus_web_war_exploded`
 
 ### Authentication
 - `POST /api/register` – create a new user (body: `RegisterRequest`)
