@@ -4,7 +4,7 @@
     "builder": "NIXPACKS"
   },
   "deploy": {
-    "startCommand": "mvn -DskipTests jetty:run",
+    "startCommand": "mvn -DskipTests -Djetty.http.port=$PORT jetty:run",
     "restartPolicyType": "ALWAYS",
     "restartPolicyMaxRetries": 10,
     "healthcheckPath": "/",
