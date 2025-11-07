@@ -24,5 +24,7 @@ src/main/webapp/old.webapp/
 # Docs
 *.md
 !README.md
+ad,prde
+d
 README/
 .cursor/
