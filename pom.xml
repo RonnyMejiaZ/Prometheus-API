@@ -75,6 +75,9 @@
         <artifactId>jetty-maven-plugin</artifactId>
         <version>11.0.15</version>
         <configuration>
+          <systemProperties>
+            <jetty.http.port>${env.PORT}</jetty.http.port>
+          </systemProperties>
           <scanIntervalSeconds>0</scanIntervalSeconds>
           <httpConnector>
             <host>0.0.0.0</host>

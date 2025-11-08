@@ -7,7 +7,7 @@
     "startCommand": "mvn -DskipTests -Djetty.http.port=$PORT jetty:run",
     "restartPolicyType": "ALWAYS",
     "restartPolicyMaxRetries": 10,
-    "healthcheckPath": "/",
+    "healthcheckPath": "/api/inquilinos",
     "healthcheckTimeout": 300,
     "sleepApplication": false
   }
